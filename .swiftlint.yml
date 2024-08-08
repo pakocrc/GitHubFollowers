@@ -11,12 +11,16 @@ included:
   - GitHubFollowers
   - GitHubFollowersTests
   - GitHubFollowersUITests
+  - "*/*.swift"
+  - "*/**/*.swift"
 excluded: # paths to ignore during linting. Takes precedence over `included`.
-  - Carthage
-  - Pods
-  - Source/ExcludedFolder
-  - Source/ExcludedFile.swift
-  - Source/*/ExcludedFile.swift # Exclude files with a wildcard
+  - "*.xcodeproj"
+  - ".git"
+  # - Carthage
+  # - Pods
+  # - Source/ExcludedFolder
+  # - Source/ExcludedFile.swift
+  # - Source/*/ExcludedFile.swift # Exclude files with a wildcard
 analyzer_rules: # Rules run by `swiftlint analyze` (experimental)
   - explicit_self
 
@@ -29,9 +33,12 @@ force_try:
 # implicitly
 function_body_length: 210
 # they can set both implicitly with an array
-# type_body_length:
-#   - 300 # warning
-#   - 400 # error
+type_body_length:
+  warning: 300 # warning
+  error: 400 # error
+line_length:
+  warning: 180 # warning
+  error: 200 # error
 # or they can set both explicitly
 file_length:
   warning: 500

@@ -10,7 +10,6 @@
 		8A6A73092C65556A007592C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6A73082C65556A007592C0 /* AppDelegate.swift */; };
 		8A6A730B2C65556A007592C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6A730A2C65556A007592C0 /* SceneDelegate.swift */; };
 		8A6A730D2C65556A007592C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6A730C2C65556A007592C0 /* ViewController.swift */; };
-		8A6A73102C65556A007592C0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 8A6A730F2C65556A007592C0 /* Base */; };
 		8A6A73122C65556C007592C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A6A73112C65556C007592C0 /* Assets.xcassets */; };
 		8A6A73152C65556C007592C0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 8A6A73142C65556C007592C0 /* Base */; };
 		8A6A73202C65556D007592C0 /* GitHubFollowersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6A731F2C65556D007592C0 /* GitHubFollowersTests.swift */; };
@@ -40,7 +39,6 @@
 		8A6A73082C65556A007592C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A6A730A2C65556A007592C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8A6A730C2C65556A007592C0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8A6A730F2C65556A007592C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8A6A73112C65556C007592C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A6A73142C65556C007592C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A6A73162C65556C007592C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,7 +100,6 @@
 				8A6A73082C65556A007592C0 /* AppDelegate.swift */,
 				8A6A730A2C65556A007592C0 /* SceneDelegate.swift */,
 				8A6A730C2C65556A007592C0 /* ViewController.swift */,
-				8A6A730E2C65556A007592C0 /* Main.storyboard */,
 				8A6A73112C65556C007592C0 /* Assets.xcassets */,
 				8A6A73132C65556C007592C0 /* LaunchScreen.storyboard */,
 				8A6A73162C65556C007592C0 /* Info.plist */,
@@ -136,6 +133,7 @@
 			buildPhases = (
 				8A6A73012C65556A007592C0 /* Sources */,
 				8A6A73022C65556A007592C0 /* Frameworks */,
+				8A6A73382C655879007592C0 /* Swiftlint Script */,
 				8A6A73032C65556A007592C0 /* Resources */,
 			);
 			buildRules = (
@@ -233,7 +231,6 @@
 			files = (
 				8A6A73122C65556C007592C0 /* Assets.xcassets in Resources */,
 				8A6A73152C65556C007592C0 /* Base in Resources */,
-				8A6A73102C65556A007592C0 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +249,32 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8A6A73382C655879007592C0 /* Swiftlint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/.swiftlint.yml",
+				"$(SRCROOT)/GitHubFollowers",
+				"$(SRCROOT)/GitHubFollowersTests",
+				"$(SRCROOT)/GitHubFollowersUITests",
+			);
+			name = "Swiftlint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8A6A73012C65556A007592C0 /* Sources */ = {
@@ -297,14 +320,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8A6A730E2C65556A007592C0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8A6A730F2C65556A007592C0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8A6A73132C65556C007592C0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -443,18 +458,20 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9B334YL85T;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GitHubFollowers/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "GitHub Followers";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.automata.GitHubFollowers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -471,18 +488,20 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9B334YL85T;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GitHubFollowers/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "GitHub Followers";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.automata.GitHubFollowers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
