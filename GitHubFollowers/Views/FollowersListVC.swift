@@ -12,13 +12,13 @@ final class FollowersListVC: UIViewController {
     enum Section: CaseIterable { case main }
 
     private let username: String
-    private var filterFollowers = [Follower]()
-    private var followers = [Follower]() {
-        didSet {
-            self.page += 1
-            self.updateData()
-        }
-    }
+    private var followers  = [Follower](), filteredFollowers = [Follower]()
+//    {
+//        didSet {
+//            self.page += 1
+//            self.updateData()
+//        }
+//    }
 
     private var page = 1
     private var hasMoreFollowers = true
@@ -52,7 +52,6 @@ final class FollowersListVC: UIViewController {
         configureCollectionView()
         configureDataSource()
         configureSeachController()
-        updateData()
     }
 
     private func configureNavigationBar() {
@@ -72,7 +71,10 @@ final class FollowersListVC: UIViewController {
 
                     print("⭐️ Followers count for: \(username) = \(followers.count). Page: \(page)")
                     if followers.count < 100 { self.hasMoreFollowers = false }
+                    self.page += 1
                     self.followers.append(contentsOf: followers)
+                    self.updateData(with: self.followers)
+
                     if followers.isEmpty { self.showEmptyView() }
 
                 case .failure(let errorMessage):
@@ -92,8 +94,9 @@ final class FollowersListVC: UIViewController {
     }
 
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Follower>(collectionView: collectionView, 
-                                                                           cellProvider: { (collectionView, indexPath, follower) -> UICollectionViewCell? in
+        dataSource =
+        UICollectionViewDiffableDataSource<Section, Follower>(collectionView: collectionView, cellProvider:
+                                                                            { (collectionView, indexPath, follower) -> UICollectionViewCell? in
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GHFollowerCollectionViewCell.resusableID, for: indexPath) as? GHFollowerCollectionViewCell {
                 cell.setFollower(follower: follower)
                 return cell
@@ -103,7 +106,8 @@ final class FollowersListVC: UIViewController {
         })
     }
 
-    private func updateData() {
+    // MARK: - Update Data
+    private func updateData(with followers: [Follower]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
         snapshot.appendSections(Section.allCases)
         snapshot.appendItems(followers)
@@ -155,11 +159,14 @@ extension FollowersListVC: UICollectionViewDelegate {
 
 extension FollowersListVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            updateData(with: self.followers)
+            return
+        }
 
-        filterFollowers = followers.filter({ $0.login.lowercased() == filter.lowercased() })
+        filteredFollowers = followers.filter({ $0.login.lowercased().contains(filter.lowercased()) })
 
-        #warning("Pending filtering!")
+        updateData(with: filteredFollowers)
     }
 }
 
