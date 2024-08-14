@@ -12,14 +12,14 @@ final class SearchVC: UIViewController {
     let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: AppImages.appLogo.rawValue)
+        imageView.image = UIImage(named: GHImages.appLogo.rawValue)
         return imageView
     }()
 
-    let usernameTextField = GitHubTextField()
+    let usernameTextField = GHUsernameTextField()
 
-    lazy var callToActionButton: GitHubButton = {
-        let button = GitHubButton(backgroundColor: .systemGreen, title: String(localized: "get_followers"))
+    lazy var callToActionButton: GHButton = {
+        let button = GHButton(backgroundColor: .systemGreen)
         button.addTarget(self, action: #selector(onCallToActionButtonPressed), for: .touchUpInside)
         return button
     }()
@@ -32,12 +32,14 @@ final class SearchVC: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
     private func setupUI() {
         view.backgroundColor = .systemBackground
         usernameTextField.delegate = self
+
+        callToActionButton.buttonTitle = String(localized: "get_followers")
 
         view.addSubview(logoImageView)
         view.addSubview(usernameTextField)
@@ -74,13 +76,21 @@ final class SearchVC: UIViewController {
 
     private func pushFollowersListVC(username: String?) {
         guard let username = username, !username.isEmpty else {
-            let alertVC = GitHubAlertVC(alertTitle: "Alert title", alertMessage: "Alert message")
-            navigationController?.present(alertVC, animated: true)
+            presentAlertOnMainThread(title: String(localized: "alert_no_username_title"),
+                                     message: String(localized: "alert_no_username_message"),
+                                     buttonTitle: String(localized: "accept"))
             return
         }
+        pushFollowerListVC(username: username)
+    }
 
-        let viewController = FollowersListVC(username: username)
-        navigationController?.pushViewController(viewController, animated: true)
+    private func pushFollowerListVC(username: String) {
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else { return }
+            let viewController = FollowersListVC(username: username)
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
+
     }
 
     deinit {

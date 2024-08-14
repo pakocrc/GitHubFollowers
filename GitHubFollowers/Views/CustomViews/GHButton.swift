@@ -7,7 +7,12 @@
 
 import UIKit
 
-final class GitHubButton: UIButton {
+final class GHButton: UIButton {
+    var buttonTitle: String? {
+        didSet {
+            setTitle(buttonTitle, for: .normal)
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -18,23 +23,22 @@ final class GitHubButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(backgroundColor: UIColor, title: String) {
+    init(backgroundColor: UIColor) {
         super.init(frame: .zero)
         self.backgroundColor = backgroundColor
-        self.setTitle(title, for: .normal)
         configure()
     }
 
     private func configure() {
         layer.cornerRadius = 10
-        titleLabel?.textColor = .white
+        setTitleColor(.white, for: .normal)
         titleLabel?.font = .preferredFont(forTextStyle: .headline)
         translatesAutoresizingMaskIntoConstraints = false
     }
 }
 
 #Preview {
-    GitHubButton(backgroundColor: .systemGreen, title: "Title")
+    GHButton(backgroundColor: .systemGreen)
 }
 
 // -MARK: Enable/Disable

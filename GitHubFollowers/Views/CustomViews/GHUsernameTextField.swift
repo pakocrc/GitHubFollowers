@@ -1,5 +1,5 @@
 //
-//  GitHubTextField.swift
+//  GHUsernameTextField.swift
 //  GitHubFollowers
 //
 //  Created by Francisco Cordoba on 12/8/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class GitHubTextField: UITextField {
+final class GHUsernameTextField: UITextField {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,11 +33,11 @@ final class GitHubTextField: UITextField {
         backgroundColor = .tertiarySystemBackground
         autocorrectionType = .no
         placeholder = String(localized: "username_placeholder")
-
+        autocapitalizationType = .none
         returnKeyType = .go
     }
 }
 
 #Preview {
-    GitHubTextField(frame: .zero)
+    GHUsernameTextField(frame: .zero)
 }

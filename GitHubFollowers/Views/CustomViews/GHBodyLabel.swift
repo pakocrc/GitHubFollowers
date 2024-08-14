@@ -1,5 +1,5 @@
 //
-//  GitHubBodyLabel.swift
+//  GHBodyLabel.swift
 //  GitHubFollowers
 //
 //  Created by Francisco Cordoba on 12/8/24.
@@ -7,8 +7,12 @@
 
 import UIKit
 
-final class GitHubBodyLabel: UILabel {
-    var message: String?
+final class GHBodyLabel: UILabel {
+    var message: String? {
+        didSet {
+            text = message
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,10 +23,9 @@ final class GitHubBodyLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(message: String, textAlignment: NSTextAlignment) {
+    init(textAlignment: NSTextAlignment) {
         super.init(frame: .zero)
         self.textAlignment = textAlignment
-        self.message = message
         configure()
     }
 
@@ -34,6 +37,5 @@ final class GitHubBodyLabel: UILabel {
         minimumScaleFactor = 0.75
         lineBreakMode = .byWordWrapping
         translatesAutoresizingMaskIntoConstraints = false
-        text = message
     }
 }

@@ -1,5 +1,5 @@
 //
-//  GitHubAlertVC.swift
+//  GHAlertVC.swift
 //  GitHubFollowers
 //
 //  Created by Francisco Cordoba on 12/8/24.
@@ -7,17 +7,18 @@
 
 import UIKit
 
-final class GitHubAlertVC: UIViewController {
+final class GHAlertVC: UIViewController {
     let alertTitle: String
     let alertMessage: String
+    let buttonTitle: String
 
-    let titleLabel = GitHubTitleLabel(title: String(localized: "alert_no_username_title"), textAlignment: .center, fontSize: 20)
-    let messageLabel = GitHubBodyLabel(message: String(localized: "alert_no_username_message"), textAlignment: .center)
+    let titleLabel = GHTitleLabel(textAlignment: .center, fontSize: 20)
+    let messageLabel = GHBodyLabel(textAlignment: .center)
 
     private let padding: CGFloat = 20
 
-    lazy var actionButton: GitHubButton = {
-        let button = GitHubButton(backgroundColor: .systemGreen, title: String(localized: "accept"))
+    lazy var actionButton: GHButton = {
+        let button = GHButton(backgroundColor: .systemGreen)
         button.addTarget(self, action: #selector(closeAlert), for: .touchUpInside)
         return button
     }()
@@ -28,9 +29,10 @@ final class GitHubAlertVC: UIViewController {
         return container
     }()
 
-    init(alertTitle: String, alertMessage: String) {
+    init(alertTitle: String, alertMessage: String, buttonTitle: String) {
         self.alertTitle = alertTitle
         self.alertMessage = alertMessage
+        self.buttonTitle = buttonTitle
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -46,6 +48,10 @@ final class GitHubAlertVC: UIViewController {
 
     private func configureUI() {
         view.addSubview(containerView)
+
+        titleLabel.title = alertTitle
+        messageLabel.message = alertMessage
+        actionButton.buttonTitle = buttonTitle
 
         containerView.addSubview(titleLabel)
         containerView.addSubview(messageLabel)
@@ -71,7 +77,7 @@ final class GitHubAlertVC: UIViewController {
             messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             messageLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
             messageLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
-            messageLabel.bottomAnchor.constraint(equalTo: actionButton.topAnchor),
+            messageLabel.bottomAnchor.constraint(equalTo: actionButton.topAnchor, constant: -padding),
             // Button
             actionButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
             actionButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
@@ -91,5 +97,5 @@ final class GitHubAlertVC: UIViewController {
 }
 
 #Preview {
-    GitHubAlertVC(alertTitle: "Title", alertMessage: "Message")
+    GHAlertVC(alertTitle: "Title", alertMessage: "Message", buttonTitle: "Ok")
 }
