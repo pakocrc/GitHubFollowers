@@ -10,9 +10,9 @@ import UIKit
 final class GHFollowerCollectionViewCell: UICollectionViewCell {
     static let resusableID = "GHFollowerCollectionViewCell"
 
-    let avatarImage = GHAvatarImageView(frame: .zero)
-    let usernameLabel = GHTitleLabel(textAlignment: .center, fontSize: 16)
-    let padding = CGFloat(8)
+    private let avatarImage = GHAvatarImageView(frame: .zero)
+    private let usernameLabel = GHTitleLabel(textAlignment: .center, fontSize: 16)
+    private let padding = CGFloat(8)
 
     override init(frame: CGRect) {
         super.init(frame: frame)

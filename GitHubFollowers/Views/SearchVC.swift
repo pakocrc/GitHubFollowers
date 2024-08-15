@@ -62,6 +62,9 @@ final class SearchVC: UIViewController {
             callToActionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             callToActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50)
         ])
+
+        #warning("Remove the next hardcoded line")
+        usernameTextField.text = "octocat"
     }
 
     private func createDismissTapGesture() {
@@ -76,7 +79,7 @@ final class SearchVC: UIViewController {
 
     private func pushFollowersListVC(username: String?) {
         guard let username = username, !username.isEmpty else {
-            presentAlertOnMainThread(title: String(localized: "alert_no_username_title"),
+            presentAlert(title: String(localized: "alert_no_username_title"),
                                      message: String(localized: "alert_no_username_message"),
                                      buttonTitle: String(localized: "accept"))
             return

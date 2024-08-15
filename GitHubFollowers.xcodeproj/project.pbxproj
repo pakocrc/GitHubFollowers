@@ -17,6 +17,12 @@
 		8A6A732C2C65556D007592C0 /* GitHubFollowersUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6A732B2C65556D007592C0 /* GitHubFollowersUITestsLaunchTests.swift */; };
 		8A6A733A2C65877C007592C0 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6A73392C65877C007592C0 /* SearchVC.swift */; };
 		8A6A733C2C658B76007592C0 /* GHButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6A733B2C658B76007592C0 /* GHButton.swift */; };
+		8AB3A54B2C6D27B10005A32E /* UserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB3A54A2C6D27B10005A32E /* UserInfoVC.swift */; };
+		8AB3A54D2C6D5AE60005A32E /* GHRoundedSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB3A54C2C6D5AE60005A32E /* GHRoundedSubVC.swift */; };
+		8AB3A54F2C6D5BB80005A32E /* GHIconLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB3A54E2C6D5BB80005A32E /* GHIconLabelView.swift */; };
+		8AB3A5512C6D65C20005A32E /* GHIconLabelValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB3A5502C6D65C20005A32E /* GHIconLabelValueView.swift */; };
+		8AB3A5532C6DCF380005A32E /* String+ConvertDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB3A5522C6DCF380005A32E /* String+ConvertDate.swift */; };
+		8AB3A5552C6DCF5A0005A32E /* Date+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB3A5542C6DCF5A0005A32E /* Date+Convert.swift */; };
 		8AC456C82C6ABC20000EA29B /* GHUsernameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC456C72C6ABC20000EA29B /* GHUsernameTextField.swift */; };
 		8AC456CB2C6ABF06000EA29B /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8AC456CA2C6ABF06000EA29B /* Localizable.xcstrings */; };
 		8AC456CE2C6AC3FB000EA29B /* GHImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC456CD2C6AC3FB000EA29B /* GHImages.swift */; };
@@ -69,6 +75,12 @@
 		8A6A732B2C65556D007592C0 /* GitHubFollowersUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubFollowersUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8A6A73392C65877C007592C0 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		8A6A733B2C658B76007592C0 /* GHButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHButton.swift; sourceTree = "<group>"; };
+		8AB3A54A2C6D27B10005A32E /* UserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoVC.swift; sourceTree = "<group>"; };
+		8AB3A54C2C6D5AE60005A32E /* GHRoundedSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHRoundedSubVC.swift; sourceTree = "<group>"; };
+		8AB3A54E2C6D5BB80005A32E /* GHIconLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHIconLabelView.swift; sourceTree = "<group>"; };
+		8AB3A5502C6D65C20005A32E /* GHIconLabelValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHIconLabelValueView.swift; sourceTree = "<group>"; };
+		8AB3A5522C6DCF380005A32E /* String+ConvertDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ConvertDate.swift"; sourceTree = "<group>"; };
+		8AB3A5542C6DCF5A0005A32E /* Date+Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Convert.swift"; sourceTree = "<group>"; };
 		8AC456C72C6ABC20000EA29B /* GHUsernameTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHUsernameTextField.swift; sourceTree = "<group>"; };
 		8AC456CA2C6ABF06000EA29B /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		8AC456CD2C6AC3FB000EA29B /* GHImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHImages.swift; sourceTree = "<group>"; };
@@ -192,6 +204,7 @@
 				8A6A73392C65877C007592C0 /* SearchVC.swift */,
 				8A6A730C2C65556A007592C0 /* FavoritesListVC.swift */,
 				8AC456D22C6ADB8A000EA29B /* FollowersListVC.swift */,
+				8AB3A54A2C6D27B10005A32E /* UserInfoVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -208,6 +221,9 @@
 				8AE7BC692C6C02DF001C6E83 /* GHAvatarImageView.swift */,
 				8AE7BC6F2C6C3516001C6E83 /* GHLoadingVC.swift */,
 				8AE7BC712C6C50FF001C6E83 /* GHEmptyVC.swift */,
+				8AB3A54C2C6D5AE60005A32E /* GHRoundedSubVC.swift */,
+				8AB3A54E2C6D5BB80005A32E /* GHIconLabelView.swift */,
+				8AB3A5502C6D65C20005A32E /* GHIconLabelValueView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -227,6 +243,8 @@
 			children = (
 				8AE7BC5A2C6BCD33001C6E83 /* UIViewController+PresentFullScreen.swift */,
 				8AE7BC6B2C6C2208001C6E83 /* UICollectionViewLayout+ThreeColumnFlowLayout.swift */,
+				8AB3A5522C6DCF380005A32E /* String+ConvertDate.swift */,
+				8AB3A5542C6DCF5A0005A32E /* Date+Convert.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -420,8 +438,10 @@
 				8A6A733C2C658B76007592C0 /* GHButton.swift in Sources */,
 				8AE7BC5B2C6BCD33001C6E83 /* UIViewController+PresentFullScreen.swift in Sources */,
 				8AE7BC6E2C6C2328001C6E83 /* DebugData.swift in Sources */,
+				8AB3A5512C6D65C20005A32E /* GHIconLabelValueView.swift in Sources */,
 				8AC456D32C6ADB8A000EA29B /* FollowersListVC.swift in Sources */,
 				8AC456CE2C6AC3FB000EA29B /* GHImages.swift in Sources */,
+				8AB3A54D2C6D5AE60005A32E /* GHRoundedSubVC.swift in Sources */,
 				8AC456C82C6ABC20000EA29B /* GHUsernameTextField.swift in Sources */,
 				8AE7BC602C6BE15C001C6E83 /* User.swift in Sources */,
 				8A6A730D2C65556A007592C0 /* FavoritesListVC.swift in Sources */,
@@ -429,14 +449,18 @@
 				8AC456D92C6AEB0E000EA29B /* GHAlertVC.swift in Sources */,
 				8AE7BC6A2C6C02DF001C6E83 /* GHAvatarImageView.swift in Sources */,
 				8A6A73092C65556A007592C0 /* AppDelegate.swift in Sources */,
+				8AB3A5532C6DCF380005A32E /* String+ConvertDate.swift in Sources */,
 				8AE7BC6C2C6C2208001C6E83 /* UICollectionViewLayout+ThreeColumnFlowLayout.swift in Sources */,
 				8AE7BC682C6C0263001C6E83 /* GHFollowerCollectionViewCell.swift in Sources */,
 				8AC456D52C6AE8A9000EA29B /* GHTitleLabel.swift in Sources */,
 				8AE7BC652C6BFCA6001C6E83 /* GHError.swift in Sources */,
 				8AE7BC632C6BE7EF001C6E83 /* NetworkManager.swift in Sources */,
+				8AB3A54B2C6D27B10005A32E /* UserInfoVC.swift in Sources */,
+				8AB3A5552C6DCF5A0005A32E /* Date+Convert.swift in Sources */,
 				8AE7BC702C6C3516001C6E83 /* GHLoadingVC.swift in Sources */,
 				8A6A730B2C65556A007592C0 /* SceneDelegate.swift in Sources */,
 				8AC456D72C6AEA01000EA29B /* GHBodyLabel.swift in Sources */,
+				8AB3A54F2C6D5BB80005A32E /* GHIconLabelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

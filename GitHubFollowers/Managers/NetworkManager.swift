@@ -56,6 +56,45 @@ final class NetworkManager {
         task.resume()
     }
 
+    func getUserInfo(for username: String, completed: @escaping (Result<User, GHError>) -> Void) {
+        let endpoint = baseUrl + "/users/\(username)"
+
+        guard let urlRequest = URL(string: endpoint) else {
+            completed(.failure(GHError.invalidUsername))
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+
+            if error != nil {
+                completed(.failure(GHError.unableToComplete))
+                return
+            }
+
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(GHError.unsuccessfulResponse))
+                return
+            }
+
+            guard let data = data else {
+                completed(.failure(GHError.invalidData))
+                return
+            }
+
+            do {
+                let user = try JSONDecoder().decode(User.self, from: data)
+//                print("⬇️ User info:: \(user)")
+                completed(.success(user))
+
+            } catch {
+                completed(.failure(GHError.decodingError))
+                return
+            }
+        }
+
+        task.resume()
+    }
+
     func downloadImage(with url: URL, completion: @escaping (UIImage?) -> Void) {
 //        print("⬇️ Downloading image from url: \(url.description)")
 

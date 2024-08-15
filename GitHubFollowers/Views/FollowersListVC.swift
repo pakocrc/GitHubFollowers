@@ -13,18 +13,27 @@ final class FollowersListVC: UIViewController {
 
     private let username: String
     private var followers  = [Follower](), filteredFollowers = [Follower]()
-//    {
-//        didSet {
-//            self.page += 1
-//            self.updateData()
-//        }
-//    }
 
     private var page = 1
     private var hasMoreFollowers = true
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
     private var emptyView: GHEmptyVC?
+    private var isSearching = false
+    private var shouldPresentLoadingView = true {
+        didSet {
+            shouldPresentLoadingView ? presentLoadingView() : dismissLoadingView()
+        }
+    }
+
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController()
+        searchController.isActive = true
+        searchController.searchResultsUpdater = self
+        searchController.showsSearchResultsController = true
+        searchController.searchBar.delegate = self
+        return searchController
+    }()
 
     init(username: String) {
         self.username = username
@@ -51,21 +60,22 @@ final class FollowersListVC: UIViewController {
     private func configureUI() {
         configureCollectionView()
         configureDataSource()
-        configureSeachController()
     }
 
     private func configureNavigationBar() {
         title = username
         navigationController?.navigationBar.isHidden = false
+        navigationItem.searchController = searchController
     }
 
     private func getFollowers() {
-        presentLoadingViewOnMainThread()
+        shouldPresentLoadingView = true
 
         NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in
             guard let self = self else { return }
 
-            self.dismissLoadingView()
+            shouldPresentLoadingView = false
+
             switch result {
                 case .success(let followers):
 
@@ -78,7 +88,7 @@ final class FollowersListVC: UIViewController {
                     if followers.isEmpty { self.showEmptyView() }
 
                 case .failure(let errorMessage):
-                    self.presentAlertOnMainThread(title: String(localized: "error"),
+                    self.presentAlert(title: String(localized: "error"),
                                                   message: errorMessage.rawValue,
                                                   buttonTitle: "ok")
             }
@@ -128,22 +138,34 @@ final class FollowersListVC: UIViewController {
         }
     }
 
-    func configureSeachController() {
-        let searchController                                    = UISearchController()
-        searchController.searchResultsUpdater                   = self
-        searchController.searchBar.placeholder                  = String(localized: "search")
-        searchController.obscuresBackgroundDuringPresentation   = true
-        navigationItem.searchController                         = searchController
+    private func getUserInfo(username: String) {
+        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
+            guard let self = self else { return }
+
+            switch result {
+                case .success(let user):
+
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else { return }
+                        let vc = UserInfoVC(userInfo: user)
+                        let navController = UINavigationController(rootViewController: vc)
+                        present(navController, animated: true)
+                    }
+
+                case .failure(let failure):
+                    presentAlert(title: "error", message: failure.localizedDescription, buttonTitle: "ok")
+            }
+        }
     }
 
-#if DEBUG
     deinit { print("FollowersListVC deinit 🗑️") }
-#endif
 }
 
 extension FollowersListVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //
+        let currentArray = isSearching ? filteredFollowers : followers
+        let username = currentArray[indexPath.item].login
+        getUserInfo(username: username)
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -157,16 +179,19 @@ extension FollowersListVC: UICollectionViewDelegate {
     }
 }
 
-extension FollowersListVC: UISearchResultsUpdating {
+extension FollowersListVC: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let filter = searchController.searchBar.text, !filter.isEmpty else {
-            updateData(with: self.followers)
-            return
+
+        if let filter = searchController.searchBar.text, !filter.isEmpty {
+            isSearching = true
+            filteredFollowers = followers.filter({ $0.login.lowercased().contains(filter.lowercased()) })
+            updateData(with: filteredFollowers)
         }
+    }
 
-        filteredFollowers = followers.filter({ $0.login.lowercased().contains(filter.lowercased()) })
-
-        updateData(with: filteredFollowers)
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        updateData(with: followers)
     }
 }
 
