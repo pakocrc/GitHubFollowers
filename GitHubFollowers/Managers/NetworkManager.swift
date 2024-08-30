@@ -23,8 +23,8 @@ final class NetworkManager {
 
         print("🌎 \(endpoint)")
 
-        completed(.failure(GHError.unsuccessfulResponse))
-        return
+//        completed(.failure(GHError.unsuccessfulResponse))
+//        return
 
         guard let urlRequest = URL(string: endpoint) else {
             completed(.failure(GHError.invalidUsername))

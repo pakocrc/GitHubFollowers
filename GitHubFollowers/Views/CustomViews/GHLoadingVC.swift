@@ -23,6 +23,16 @@ final class GHLoadingVC: UIViewController {
         return activityIndicator
     }()
 
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        modalPresentationStyle = .overFullScreen
+        modalTransitionStyle = .crossDissolve
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,8 +56,10 @@ final class GHLoadingVC: UIViewController {
     }
 
     func dismissView() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.dismiss(animated: true)
+            print("🟠 On dismiss loading view!")
         }
     }
 

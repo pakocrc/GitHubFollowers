@@ -24,11 +24,8 @@ final class FollowersListVC: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
     private var emptyView: GHEmptyVC?
     private var isSearching = false
-    private var shouldPresentLoadingView = true {
-        didSet {
-            shouldPresentLoadingView ? presentLoadingView() : dismissLoadingView()
-        }
-    }
+    private var isNewUserList = false
+    private let loadingVC = GHLoadingVC()
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController()
@@ -73,15 +70,17 @@ final class FollowersListVC: UIViewController {
     }
 
     private func getFollowers() {
-        shouldPresentLoadingView = true
+        presentLoadingView(loadingVC: loadingVC)
 
         NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in
             guard let self = self else { return }
 
-            shouldPresentLoadingView = false
-
             switch result {
                 case .success(let followers):
+
+                    dismissLoadingView(loadingVC: loadingVC)
+
+                    isNewUserList = false
 
                     print("⭐️ Followers count for: \(username) = \(followers.count). Page: \(page)")
                     if followers.count < 100 { self.hasMoreFollowers = false }
@@ -92,9 +91,18 @@ final class FollowersListVC: UIViewController {
                     if followers.isEmpty { self.showEmptyView() }
 
                 case .failure(let errorMessage):
-                    self.presentAlert(title: String(localized: "error"),
-                                                  message: errorMessage.rawValue,
-                                                  buttonTitle: "ok")
+                    dismissLoadingView(loadingVC: loadingVC) {
+                        self.presentAlert(title: String(localized: "error"),
+                                          message: errorMessage.rawValue,
+                                          buttonTitle: "ok")
+
+                        if self.isNewUserList {
+                            var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
+                            snapshot.deleteAllItems()
+
+                            self.dataSource.apply(snapshot, animatingDifferences: true)
+                        }
+                    }
             }
         }
     }
@@ -205,6 +213,7 @@ extension FollowersListVC: FollowersListVCDelegate {
         username = user.login
         title = username
         page = 1
+        isNewUserList = true
         followers.removeAll()
         filteredFollowers.removeAll()
         collectionView.setContentOffset(.zero, animated: true)

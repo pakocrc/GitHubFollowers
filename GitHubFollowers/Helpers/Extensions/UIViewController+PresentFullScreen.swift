@@ -19,26 +19,26 @@ extension UIViewController {
             alertVC.modalPresentationStyle = .overFullScreen
             alertVC.modalTransitionStyle = .crossDissolve
 
-            self.present(alertVC, animated: true)
+            self.present(alertVC, animated: true) {
+                print("🟠 On presenting alert!")
+            }
         }
     }
 
-    func presentLoadingView() {
+    func presentLoadingView(loadingVC: GHLoadingVC) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
 
-            let loadingVC = GHLoadingVC()
-            loadingVC.modalPresentationStyle = .overFullScreen
-            loadingVC.modalTransitionStyle = .crossDissolve
-
-            self.present(loadingVC, animated: true)
+            self.present(loadingVC, animated: true) {
+                print("🟠 On present loading view!")
+            }
         }
     }
 
-    func dismissLoadingView() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) { [weak self] in
-            guard let self = self else { return }
-            self.dismiss(animated: true)
+    func dismissLoadingView(loadingVC: GHLoadingVC, action: (() -> Void)? = nil) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+            loadingVC.dismissView()
+            action?()
         }
     }
 
