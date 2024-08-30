@@ -7,7 +7,12 @@
 
 import UIKit
 
-final class UserInfoVC: UIViewController {
+protocol UserInfoVCDelegate: AnyObject {
+    func didTapGitHubProfile()
+    func didTapGitHubFollowers()
+}
+
+final class UserInfoVC: UIViewController, UserInfoVCDelegate {
 
     private let userInfo: User
 
@@ -20,6 +25,7 @@ final class UserInfoVC: UIViewController {
     private let reposVC = GHRoundedSubVC()
     private let followersVC = GHRoundedSubVC()
     private let footerMessage = GHBodyLabel(textAlignment: .center)
+    weak var delegate: FollowersListVCDelegate?
 
     init(userInfo: User) {
         self.userInfo = userInfo
@@ -43,7 +49,7 @@ final class UserInfoVC: UIViewController {
     private func configureNavigationBar() {
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.navigationBar.backgroundColor = .secondarySystemFill
+        navigationController?.navigationBar.backgroundColor = .systemBackground
 
         let dismissButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismissView))
         dismissButton.tintColor = .systemGreen
@@ -97,6 +103,9 @@ final class UserInfoVC: UIViewController {
     }
 
     private func configureReposView() {
+        reposVC.buttonType = .profile
+        reposVC.delegate = self
+
         reposVC.buttonTitle = String(localized: "github_profile")
         //
         reposVC.leftIconLabelText = String(localized: "public_repos")
@@ -106,8 +115,6 @@ final class UserInfoVC: UIViewController {
         reposVC.rightIconLabelText = String(localized: "public_gists")
         reposVC.rightIconName = "list.bullet"
         reposVC.rightIconValueText = userInfo.publicGists.description
-
-        reposVC.actionButton.addTarget(self, action: #selector(onGitHubProfileButtonPressed), for: .touchUpInside)
 
         view.addSubview(reposVC.view)
 
@@ -120,19 +127,18 @@ final class UserInfoVC: UIViewController {
     }
 
     private func configureFollowersView() {
-        followersVC.actionButton.backgroundColor = .systemGreen
+        followersVC.buttonType = .followers
+        followersVC.delegate = self
 
         followersVC.buttonTitle = String(localized: "get_followers")
         //
         followersVC.leftIconLabelText = String(localized: "following")
         followersVC.leftIconName = "heart"
-        followersVC.leftIconValueText = userInfo.publicRepos.description
+        followersVC.leftIconValueText = userInfo.following.description
         //
         followersVC.rightIconLabelText = String(localized: "followers")
         followersVC.rightIconName = "person.3"
-        followersVC.rightIconValueText = userInfo.publicGists.description
-
-        followersVC.actionButton.addTarget(self, action: #selector(onGetFollowersButtonPressed), for: .touchUpInside)
+        followersVC.rightIconValueText = userInfo.followers.description
 
         view.addSubview(followersVC.view)
 
@@ -165,17 +171,32 @@ final class UserInfoVC: UIViewController {
         }
     }
 
-    @objc
-    private func onGitHubProfileButtonPressed() {
-        print("onGitHubProfileButtonPressed")
-    }
-
-    @objc
-    private func onGetFollowersButtonPressed() {
-        print("onGetFollowersButtonPressed")
-    }
-
     deinit { print("UserInfoVC deinit 🗑️") }
+}
+
+extension UserInfoVC {
+    func didTapGitHubProfile() {
+        guard let url = URL(string: userInfo.htmlUrl) else {
+            presentAlert(title: String(localized: "Alert"),
+                                     message: String(localized: "Invalid URL"),
+                                     buttonTitle: String(localized: "accept"))
+            return
+        }
+
+       presentSafariVC(with: url)
+    }
+
+    func didTapGitHubFollowers() {
+        guard userInfo.followers != 0 else {
+            self.presentAlert(title: String(localized: "error"),
+                                          message: "User has no followers.",
+                                          buttonTitle: "ok")
+            return
+        }
+
+        dismiss(animated: true)
+        delegate?.onReloadFollowersList(for: userInfo)
+    }
 }
 
 #Preview {

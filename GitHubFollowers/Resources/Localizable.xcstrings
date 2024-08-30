@@ -18,6 +18,23 @@
         }
       }
     },
+    "Alert" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alert"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alerta"
+          }
+        }
+      }
+    },
     "alert_no_username_message" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -150,6 +167,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Perfil de GitHub"
+          }
+        }
+      }
+    },
+    "Invalid URL" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The url attached to this user is invalid"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La url de este usuario es inválida"
           }
         }
       }

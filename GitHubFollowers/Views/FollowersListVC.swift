@@ -7,11 +7,15 @@
 
 import UIKit
 
+protocol FollowersListVCDelegate: AnyObject {
+    func onReloadFollowersList(for user: User)
+}
+
 final class FollowersListVC: UIViewController {
 
     enum Section: CaseIterable { case main }
 
-    private let username: String
+    private var username: String
     private var followers  = [Follower](), filteredFollowers = [Follower]()
 
     private var page = 1
@@ -148,6 +152,7 @@ final class FollowersListVC: UIViewController {
                     DispatchQueue.main.async { [weak self] in
                         guard let self = self else { return }
                         let vc = UserInfoVC(userInfo: user)
+                        vc.delegate = self
                         let navController = UINavigationController(rootViewController: vc)
                         present(navController, animated: true)
                     }
@@ -192,6 +197,18 @@ extension FollowersListVC: UISearchResultsUpdating, UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false
         updateData(with: followers)
+    }
+}
+
+extension FollowersListVC: FollowersListVCDelegate {
+    func onReloadFollowersList(for user: User) {
+        username = user.login
+        title = username
+        page = 1
+        followers.removeAll()
+        filteredFollowers.removeAll()
+        collectionView.setContentOffset(.zero, animated: true)
+        getFollowers()
     }
 }
 

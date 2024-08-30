@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum GHRoundedSubVCButtonType {
+    case profile, followers
+}
+
 class GHRoundedSubVC: UIViewController {
     var buttonTitle: String? {
         didSet {
@@ -50,10 +54,24 @@ class GHRoundedSubVC: UIViewController {
         }
     }
 
+    var buttonType: GHRoundedSubVCButtonType = .profile {
+        didSet {
+            switch buttonType {
+                case .profile:
+                    actionButton.backgroundColor = .systemGreen
+                    actionButton.addTarget(self, action: #selector(didTapGitHubProfile), for: .touchUpInside)
+                case .followers:
+                    actionButton.backgroundColor = .systemPurple
+                    actionButton.addTarget(self, action: #selector(didTapGitHubFollowers), for: .touchUpInside)
+            }
+        }
+    }
+
     private let leftIconLabel = GHIconLabelValueView()
     private let rightIconLabel = GHIconLabelValueView()
-    let actionButton = GHButton(backgroundColor: .systemPurple)
+    private let actionButton = GHButton(backgroundColor: .systemPurple)
     private let padding = CGFloat(20)
+    weak var delegate: UserInfoVCDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +106,16 @@ class GHRoundedSubVC: UIViewController {
             actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             actionButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+
+    @objc
+    private func didTapGitHubProfile() {
+        delegate?.didTapGitHubProfile()
+    }
+
+    @objc
+    private func didTapGitHubFollowers() {
+        delegate?.didTapGitHubFollowers()
     }
 
     deinit { print("GHRoundedSubVC deinit 🗑️") }

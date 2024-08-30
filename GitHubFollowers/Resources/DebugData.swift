@@ -16,6 +16,7 @@ let debugFollowers = [
 let debugUserInfo = User(login: "andrew",
                          avatarURL: "https://avatars.githubusercontent.com/u/1060?v=4",
                          createdAt: "2008-02-27T11:39:22Z",
+                         htmlUrl: "www.github.com/pakocrc",
                          id: 1060,
                          publicRepos: 309,
                          publicGists: 196,

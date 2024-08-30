@@ -213,17 +213,17 @@
 			isa = PBXGroup;
 			children = (
 				8AE7BC662C6C0239001C6E83 /* Cells */,
-				8A6A733B2C658B76007592C0 /* GHButton.swift */,
-				8AC456C72C6ABC20000EA29B /* GHUsernameTextField.swift */,
-				8AC456D42C6AE8A9000EA29B /* GHTitleLabel.swift */,
-				8AC456D62C6AEA01000EA29B /* GHBodyLabel.swift */,
 				8AC456D82C6AEB0E000EA29B /* GHAlertVC.swift */,
 				8AE7BC692C6C02DF001C6E83 /* GHAvatarImageView.swift */,
-				8AE7BC6F2C6C3516001C6E83 /* GHLoadingVC.swift */,
+				8AC456D62C6AEA01000EA29B /* GHBodyLabel.swift */,
+				8A6A733B2C658B76007592C0 /* GHButton.swift */,
 				8AE7BC712C6C50FF001C6E83 /* GHEmptyVC.swift */,
-				8AB3A54C2C6D5AE60005A32E /* GHRoundedSubVC.swift */,
-				8AB3A54E2C6D5BB80005A32E /* GHIconLabelView.swift */,
 				8AB3A5502C6D65C20005A32E /* GHIconLabelValueView.swift */,
+				8AB3A54E2C6D5BB80005A32E /* GHIconLabelView.swift */,
+				8AE7BC6F2C6C3516001C6E83 /* GHLoadingVC.swift */,
+				8AB3A54C2C6D5AE60005A32E /* GHRoundedSubVC.swift */,
+				8AC456D42C6AE8A9000EA29B /* GHTitleLabel.swift */,
+				8AC456C72C6ABC20000EA29B /* GHUsernameTextField.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";

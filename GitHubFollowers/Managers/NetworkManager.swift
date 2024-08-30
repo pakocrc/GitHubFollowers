@@ -21,6 +21,11 @@ final class NetworkManager {
     func getFollowers(for username: String, page: Int, completed: @escaping (Result<[Follower], GHError>) -> Void) {
         let endpoint = baseUrl + "/users/\(username)/followers?per_page=100&page=\(page)"
 
+        print("🌎 \(endpoint)")
+
+        completed(.failure(GHError.unsuccessfulResponse))
+        return
+
         guard let urlRequest = URL(string: endpoint) else {
             completed(.failure(GHError.invalidUsername))
             return
@@ -58,6 +63,8 @@ final class NetworkManager {
 
     func getUserInfo(for username: String, completed: @escaping (Result<User, GHError>) -> Void) {
         let endpoint = baseUrl + "/users/\(username)"
+
+        print("🌎🔵 \(endpoint)")
 
         guard let urlRequest = URL(string: endpoint) else {
             completed(.failure(GHError.invalidUsername))
