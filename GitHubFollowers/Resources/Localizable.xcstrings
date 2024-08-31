@@ -1,6 +1,23 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
     "accept" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -82,6 +99,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error"
+          }
+        }
+      }
+    },
+    "Favorite included" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorite included successfully! 🥳"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡Favorito incluído exitosamente! 🥳"
+          }
+        }
+      }
+    },
+    "Favorites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favoritos"
           }
         }
       }
@@ -188,6 +239,23 @@
         }
       }
     },
+    "Not favorites yet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There aren't any favorite users yet"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay usuarios favoritos aún"
+          }
+        }
+      }
+    },
     "not_followers_message" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -256,8 +324,24 @@
         }
       }
     },
-    "search" : {
+    "Remove" : {
       "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar"
+          }
+        }
+      }
+    },
+    "Search" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -269,6 +353,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buscar"
+          }
+        }
+      }
+    },
+    "Success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Operación exitosa"
           }
         }
       }

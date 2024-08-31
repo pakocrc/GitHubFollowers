@@ -25,19 +25,19 @@ extension UIViewController {
         }
     }
 
-    func presentLoadingView(loadingVC: GHLoadingVC) {
+    func presentLoadingView(_ viewController: GHLoadingVC) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
 
-            self.present(loadingVC, animated: true) {
+            self.present(viewController, animated: true) {
                 print("🟠 On present loading view!")
             }
         }
     }
 
-    func dismissLoadingView(loadingVC: GHLoadingVC, action: (() -> Void)? = nil) {
+    func dismissLoadingView(_ viewController: GHLoadingVC, action: (() -> Void)? = nil) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-            loadingVC.dismissView()
+            viewController.dismissView()
             action?()
         }
     }

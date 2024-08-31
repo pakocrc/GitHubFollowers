@@ -63,9 +63,6 @@ final class SearchVC: UIViewController {
             callToActionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             callToActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50)
         ])
-
-        #warning("Remove the next hardcoded line")
-        usernameTextField.text = "octocat"
     }
 
     private func createDismissTapGesture() {

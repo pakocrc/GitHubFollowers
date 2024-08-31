@@ -67,10 +67,49 @@ final class FollowersListVC: UIViewController {
         title = username
         navigationController?.navigationBar.isHidden = false
         navigationItem.searchController = searchController
+
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFavoriteUserButtonTapped))
+        navigationItem.rightBarButtonItem = addButton
+
+        verifyIfUserIsFavorite()
+    }
+
+    @objc
+    private func popViewController() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+
+    private func verifyIfUserIsFavorite() {
+        PersistenceManger.retrieveFavorites { [weak self] result in
+            guard let self = self else { return }
+
+            switch result {
+                case .success(let favorites):
+
+                    if !favorites.contains(where: { $0.login == self.username }) {
+                        self.showHideAddFavoriteButton(show: true)
+                    } else {
+                        self.showHideAddFavoriteButton(show: false)
+                    }
+                case .failure:
+                    self.showHideAddFavoriteButton(show: false)
+            }
+        }
+    }
+
+    private func showHideAddFavoriteButton(show: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            navigationItem.rightBarButtonItem?.isHidden = !show
+            navigationItem.rightBarButtonItem?.isEnabled = show
+        }
     }
 
     private func getFollowers() {
-        presentLoadingView(loadingVC: loadingVC)
+        presentLoadingView(loadingVC)
 
         NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in
             guard let self = self else { return }
@@ -78,7 +117,7 @@ final class FollowersListVC: UIViewController {
             switch result {
                 case .success(let followers):
 
-                    dismissLoadingView(loadingVC: loadingVC)
+                    dismissLoadingView(loadingVC)
 
                     isNewUserList = false
 
@@ -91,7 +130,7 @@ final class FollowersListVC: UIViewController {
                     if followers.isEmpty { self.showEmptyView() }
 
                 case .failure(let errorMessage):
-                    dismissLoadingView(loadingVC: loadingVC) {
+                    dismissLoadingView(loadingVC) {
                         self.presentAlert(title: String(localized: "error"),
                                           message: errorMessage.rawValue,
                                           buttonTitle: "ok")
@@ -171,6 +210,50 @@ final class FollowersListVC: UIViewController {
         }
     }
 
+    @objc
+    private func addFavoriteUserButtonTapped() {
+        presentLoadingView(loadingVC)
+
+        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
+            guard let self = self else { return }
+
+            switch result {
+                case .success(let userInfo):
+
+                    dismissLoadingView(loadingVC)
+
+                    let follower = Follower(login: userInfo.login, avatarURL: userInfo.avatarURL, htmlUrl: userInfo.htmlUrl, id: userInfo.id)
+
+                    PersistenceManger.updateFavoritesList(with: follower, actionType: .add) { [weak self] error in
+                        guard let self = self else { return }
+
+                        if error != nil {
+                            self.dismissLoadingView(self.loadingVC) {
+                                self.presentAlert(title: String(localized: "error"),
+                                                  message: error?.localizedDescription ?? "",
+                                                  buttonTitle: "ok")
+                            }
+                        }
+
+                        self.dismissLoadingView(self.loadingVC) {
+                            self.presentAlert(title: String(localized: "Success"),
+                                              message: String(localized: "Favorite included"),
+                                              buttonTitle: String(localized: "ok"))
+                        }
+                    }
+
+                    verifyIfUserIsFavorite()
+
+                case .failure(let failure):
+                    dismissLoadingView(loadingVC) {
+                        self.presentAlert(title: "error",
+                                          message: failure.localizedDescription,
+                                          buttonTitle: "ok")
+                    }
+            }
+        }
+    }
+
     deinit { print("FollowersListVC deinit 🗑️") }
 }
 
@@ -218,6 +301,7 @@ extension FollowersListVC: FollowersListVCDelegate {
         filteredFollowers.removeAll()
         collectionView.setContentOffset(.zero, animated: true)
         getFollowers()
+        verifyIfUserIsFavorite()
     }
 }
 

@@ -32,7 +32,7 @@ final class GHFollowerCollectionViewCell: UICollectionViewCell {
         addSubview(avatarImage)
         addSubview(usernameLabel)
 
-        backgroundColor = .secondarySystemBackground
+        backgroundColor = .systemBackground
 
         NSLayoutConstraint.activate([
             avatarImage.topAnchor.constraint(equalTo: topAnchor, constant: padding),

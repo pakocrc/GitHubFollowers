@@ -19,10 +19,10 @@ final class GHAvatarImageView: UIImageView {
     }
 
     private func configure() {
+        translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 10
         clipsToBounds = true
         image = UIImage(named: GHImages.avatarPlaceholder.rawValue)
-        translatesAutoresizingMaskIntoConstraints = false
     }
 
     func downloadImage(from urlString: String) {

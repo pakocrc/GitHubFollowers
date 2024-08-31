@@ -64,7 +64,7 @@ final class NetworkManager {
     func getUserInfo(for username: String, completed: @escaping (Result<User, GHError>) -> Void) {
         let endpoint = baseUrl + "/users/\(username)"
 
-        print("🌎🔵 \(endpoint)")
+        print("🌎 \(endpoint)")
 
         guard let urlRequest = URL(string: endpoint) else {
             completed(.failure(GHError.invalidUsername))
