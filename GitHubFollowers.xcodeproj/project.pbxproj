@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8A529D982C82595C00C782BA /* PersistenceManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A529D972C82595C00C782BA /* PersistenceManger.swift */; };
 		8A529D9A2C82868200C782BA /* GHFavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A529D992C82868200C782BA /* GHFavoriteTableViewCell.swift */; };
+		8A529D9C2C82B3A800C782BA /* GHTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A529D9B2C82B3A800C782BA /* GHTabBarController.swift */; };
 		8A6A73092C65556A007592C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6A73082C65556A007592C0 /* AppDelegate.swift */; };
 		8A6A730B2C65556A007592C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6A730A2C65556A007592C0 /* SceneDelegate.swift */; };
 		8A6A730D2C65556A007592C0 /* FavoritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6A730C2C65556A007592C0 /* FavoritesListVC.swift */; };
@@ -65,6 +66,7 @@
 /* Begin PBXFileReference section */
 		8A529D972C82595C00C782BA /* PersistenceManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManger.swift; sourceTree = "<group>"; };
 		8A529D992C82868200C782BA /* GHFavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHFavoriteTableViewCell.swift; sourceTree = "<group>"; };
+		8A529D9B2C82B3A800C782BA /* GHTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHTabBarController.swift; sourceTree = "<group>"; };
 		8A6A73052C65556A007592C0 /* GitHubFollowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubFollowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A6A73082C65556A007592C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A6A730A2C65556A007592C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				8A6A73082C65556A007592C0 /* AppDelegate.swift */,
 				8A6A730A2C65556A007592C0 /* SceneDelegate.swift */,
 				8A6A73132C65556C007592C0 /* LaunchScreen.storyboard */,
+				8A529D9B2C82B3A800C782BA /* GHTabBarController.swift */,
 			);
 			path = AppInit;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				8AE7BC6C2C6C2208001C6E83 /* UICollectionViewLayout+ThreeColumnFlowLayout.swift in Sources */,
 				8AE7BC682C6C0263001C6E83 /* GHFollowerCollectionViewCell.swift in Sources */,
 				8AC456D52C6AE8A9000EA29B /* GHTitleLabel.swift in Sources */,
+				8A529D9C2C82B3A800C782BA /* GHTabBarController.swift in Sources */,
 				8AE7BC652C6BFCA6001C6E83 /* GHError.swift in Sources */,
 				8AE7BC632C6BE7EF001C6E83 /* NetworkManager.swift in Sources */,
 				8AB3A54B2C6D27B10005A32E /* UserInfoVC.swift in Sources */,
