@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A04E0992C8BB63200FDBE30 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A04E0982C8BB63100FDBE30 /* Constants.swift */; };
 		8A529D982C82595C00C782BA /* PersistenceManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A529D972C82595C00C782BA /* PersistenceManger.swift */; };
 		8A529D9A2C82868200C782BA /* GHFavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A529D992C82868200C782BA /* GHFavoriteTableViewCell.swift */; };
 		8A529D9C2C82B3A800C782BA /* GHTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A529D9B2C82B3A800C782BA /* GHTabBarController.swift */; };
@@ -44,6 +45,7 @@
 		8AE7BC6E2C6C2328001C6E83 /* DebugData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7BC6D2C6C2328001C6E83 /* DebugData.swift */; };
 		8AE7BC702C6C3516001C6E83 /* GHLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7BC6F2C6C3516001C6E83 /* GHLoadingVC.swift */; };
 		8AE7BC722C6C50FF001C6E83 /* GHEmptyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7BC712C6C50FF001C6E83 /* GHEmptyVC.swift */; };
+		8AF8F5722C937D4900E0D057 /* GHAlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF8F5712C937D4900E0D057 /* GHAlertContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8A04E0982C8BB63100FDBE30 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8A529D972C82595C00C782BA /* PersistenceManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManger.swift; sourceTree = "<group>"; };
 		8A529D992C82868200C782BA /* GHFavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHFavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		8A529D9B2C82B3A800C782BA /* GHTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHTabBarController.swift; sourceTree = "<group>"; };
@@ -105,6 +108,7 @@
 		8AE7BC6D2C6C2328001C6E83 /* DebugData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugData.swift; sourceTree = "<group>"; };
 		8AE7BC6F2C6C3516001C6E83 /* GHLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHLoadingVC.swift; sourceTree = "<group>"; };
 		8AE7BC712C6C50FF001C6E83 /* GHEmptyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHEmptyVC.swift; sourceTree = "<group>"; };
+		8AF8F5712C937D4900E0D057 /* GHAlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHAlertContainerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +203,7 @@
 				8AE7BC592C6BCD21001C6E83 /* Extensions */,
 				8AC456CD2C6AC3FB000EA29B /* GHImages.swift */,
 				8AE7BC642C6BFCA6001C6E83 /* GHError.swift */,
+				8A04E0982C8BB63100FDBE30 /* Constants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 				8AB3A54C2C6D5AE60005A32E /* GHRoundedSubVC.swift */,
 				8AC456D42C6AE8A9000EA29B /* GHTitleLabel.swift */,
 				8AC456C72C6ABC20000EA29B /* GHUsernameTextField.swift */,
+				8AF8F5712C937D4900E0D057 /* GHAlertContainerView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -449,6 +455,7 @@
 				8AE7BC6E2C6C2328001C6E83 /* DebugData.swift in Sources */,
 				8AB3A5512C6D65C20005A32E /* GHIconLabelValueView.swift in Sources */,
 				8AC456D32C6ADB8A000EA29B /* FollowersListVC.swift in Sources */,
+				8A04E0992C8BB63200FDBE30 /* Constants.swift in Sources */,
 				8AC456CE2C6AC3FB000EA29B /* GHImages.swift in Sources */,
 				8AB3A54D2C6D5AE60005A32E /* GHRoundedSubVC.swift in Sources */,
 				8AC456C82C6ABC20000EA29B /* GHUsernameTextField.swift in Sources */,
@@ -470,6 +477,7 @@
 				8AB3A5552C6DCF5A0005A32E /* Date+Convert.swift in Sources */,
 				8AE7BC702C6C3516001C6E83 /* GHLoadingVC.swift in Sources */,
 				8A529D982C82595C00C782BA /* PersistenceManger.swift in Sources */,
+				8AF8F5722C937D4900E0D057 /* GHAlertContainerView.swift in Sources */,
 				8A6A730B2C65556A007592C0 /* SceneDelegate.swift in Sources */,
 				8AC456D72C6AEA01000EA29B /* GHBodyLabel.swift in Sources */,
 				8AB3A54F2C6D5BB80005A32E /* GHIconLabelView.swift in Sources */,

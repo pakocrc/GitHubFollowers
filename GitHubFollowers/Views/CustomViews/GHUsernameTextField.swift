@@ -35,6 +35,7 @@ final class GHUsernameTextField: UITextField {
         placeholder = String(localized: "username_placeholder")
         autocapitalizationType = .none
         returnKeyType = .go
+        clearButtonMode = .whileEditing
     }
 }
 

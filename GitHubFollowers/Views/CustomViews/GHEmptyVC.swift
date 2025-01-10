@@ -18,7 +18,7 @@ final class GHEmptyVC: UIViewController {
     }()
 
     private let backgroundImage: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: GHImages.emptyStateLogo.rawValue))
+        let imageView = UIImageView(image: GHImages.emptyStateLogo)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()

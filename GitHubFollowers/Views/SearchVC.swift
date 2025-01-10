@@ -12,7 +12,7 @@ final class SearchVC: UIViewController {
     let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: GHImages.appLogo.rawValue)
+        imageView.image = GHImages.appLogo
         return imageView
     }()
 
@@ -33,7 +33,7 @@ final class SearchVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
-//        usernameTextField.text = ""
+        usernameTextField.text = ""
     }
 
     private func setupUI() {
@@ -72,6 +72,7 @@ final class SearchVC: UIViewController {
 
     @objc
     private func onCallToActionButtonPressed() {
+        usernameTextField.resignFirstResponder()
         pushFollowersListVC(username: usernameTextField.text)
     }
 

@@ -22,7 +22,7 @@ final class GHAvatarImageView: UIImageView {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 10
         clipsToBounds = true
-        image = UIImage(named: GHImages.avatarPlaceholder.rawValue)
+        image = GHImages.avatarPlaceholder
     }
 
     func downloadImage(from urlString: String) {

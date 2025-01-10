@@ -23,11 +23,7 @@ final class GHAlertVC: UIViewController {
         return button
     }()
 
-    let containerView: UIView = {
-        let container = UIView()
-        container.translatesAutoresizingMaskIntoConstraints = false
-        return container
-    }()
+    let containerView = GHAlertContainerView()
 
     init(alertTitle: String, alertMessage: String, buttonTitle: String) {
         self.alertTitle = alertTitle
@@ -42,7 +38,7 @@ final class GHAlertVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.75)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         configureUI()
     }
 
@@ -56,12 +52,6 @@ final class GHAlertVC: UIViewController {
         containerView.addSubview(titleLabel)
         containerView.addSubview(messageLabel)
         containerView.addSubview(actionButton)
-
-        containerView.layer.cornerRadius = 20
-        containerView.layer.borderWidth = 2
-        containerView.layer.borderColor = UIColor.white.cgColor
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = .systemBackground
 
         NSLayoutConstraint.activate([
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
